@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Quote>
+
+<main>
+
+    <section id="today-quote">
+        <h2>Today's Quote</h2>
+
+        <h3 id="quote">@Model.ToArray()[0].Content</h3>
+
+        <section id="comments">
+            @foreach (var comment in @Model.ToArray()[0].Comments)
+            {
+                <div class="comment">
+                    <h4>@comment.Author - @comment.CommentDate</h4>
+                    <p>@comment.Content</p>
+                </div>
+            }
+        </section>
+    </section>
+
+    <section id="prev-quotes">
+        <h2>This Weeks Quotes</h2>
+
+        @foreach(var quote in Model.ToArray().Skip(1))
+        {
+            <div>Quote</div>
+
+        }
+
+    </section>
+
+</main>
