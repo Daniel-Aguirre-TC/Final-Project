@@ -1,0 +1,87 @@
+﻿
+body {
+    color: black;
+    background-image: linear-gradient(315deg, #0499f2 10%, #26f596 74%);
+    background-image: url("/Images/Pretty_Horizon.jpg");
+    background-size: cover; 
+}
+
+#today-quote {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 2% auto;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+    #today-quote h2 {
+        text-align: center;
+    }
+
+#quote {
+    margin: 2% auto;
+    width: 70vw;
+    border: 0.5vw solid #0499f2;
+    border-radius: 50%;
+    font-weight: 900;
+    text-align: center;
+    padding: 6vh 3vw 4vh 3vw;
+}
+
+
+#quotee{
+    text-align: center;
+    font-size: 2rem;
+    font-style: italic;
+}
+
+#comments {
+    margin-top: 2%;
+    width: 100%;
+}
+
+#comments-container, #form-container{
+    border-radius: 15%;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 2% 0;
+    font-weight: 800;
+    font-size: 1rem;
+    border: 0.5vw solid #0499f2;
+    background-color: rgb(211 226 232);
+
+}
+
+figure {
+    padding: 10px;
+    border-bottom: 2px solid #0499f2;
+    overflow: unset;
+}
+
+#comment-container {
+    border-radius: 25%;
+}
+
+#comment-container h2 {
+    padding-bottom: 10px;
+}
+
+#comment-form {
+    padding: 5px;
+}
+
+#name-input {
+    width: 50%;
+    background-color: rgb(217 239 247);
+    margin-top: 10px;
+}
+
+#comment-input {
+    height: 50px;
+    width: 100%;
+    resize: none;
+    background-color: rgb(217 239 247);
+}
