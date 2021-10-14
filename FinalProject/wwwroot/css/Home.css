@@ -1,0 +1,21 @@
+﻿
+
+#container {
+    padding-top: 20vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+
+.display-4{
+    font-weight: 600;
+}
+
+p {
+    font-weight: 700;
+}
+
+#link-centered-bordered{
+    font-weight: 800;
+}

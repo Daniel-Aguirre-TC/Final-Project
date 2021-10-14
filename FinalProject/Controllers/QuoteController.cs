@@ -23,5 +23,28 @@ namespace FinalProject.Controllers
             thisWeeksQuotes.ForEach(x => x.Comments = repo.GetAllComments().OrderBy(d => d.CommentDate).ToList());
             return View(thisWeeksQuotes);
         }
+
+        public IActionResult ViewQuote(int id)
+        {
+            return View(repo.GetQuote(id));
+        }
+
+        public IActionResult InsertComment(int id)
+        {
+            var comment = new Comment() {
+                QuoteID = id,
+                ParentQuote = repo.GetQuote(id)        
+            };
+            return repo.GetQuote(id) == null ? View("QuoteNotFound") : View("InsertComment", comment);
+        }
+
+        public IActionResult InsertCommentToDatabase(Comment commentToInsert)
+        {
+            //TODO: I'm getting null data here in InsertCommentToDatabase()
+            repo.InsertComment(commentToInsert);
+            return RedirectToAction("ViewQuote", new { id = commentToInsert.QuoteID });
+        }
+
+
     }
 }

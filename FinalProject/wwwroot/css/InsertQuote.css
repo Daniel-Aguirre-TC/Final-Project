@@ -1,0 +1,53 @@
+﻿
+
+
+#comment-form {
+    border-radius: 15%;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    font-weight: 800;
+    font-size: 1rem;
+    border: 0.5vw solid #0499f2;
+}
+
+#comment-form h2{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+#name-input {
+    width: 50%;
+    background-color: rgb(217 239 247);
+    margin-top: 10px;
+    border: 2px solid black;
+}
+
+#comment-input {
+    height: 50px;
+    width: 100%;
+    resize: none;
+    background-color: rgb(217 239 247);
+    border: 2px solid black;
+}
+
+#form-submit-container {
+    text-align: center;
+}
+
+#form-submit {
+    margin-top: 15px;
+    background: rgb(217 239 247);
+    border-radius: 50%;
+    padding: 2%;
+    font-weight: 600;
+    border: 0.5vw solid #0499f2;
+    text-align: center;
+}
+
+    #form-submit:hover {
+        border-color: blue;
+        background-color: lightsteelblue;
+        color: blue;
+    }
+

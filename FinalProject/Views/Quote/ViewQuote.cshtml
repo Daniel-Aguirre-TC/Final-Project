@@ -1,0 +1,41 @@
+﻿@model Quote
+
+<link rel="stylesheet" href="~/css/quote.css">
+
+<main>
+
+    <section id="today-quote">
+        <h2>Today's Quote</h2>
+
+        <div id="quote">
+            <h3>@Model.Content</h3>
+        </div>
+
+        <div id="quotee">
+            <p>@Model.Quotee</p>
+        </div>
+
+        <a id="link-centered-bordered" href=/Quote/InsertComment/@Model.QuoteID>
+            Submit Your Opinion About This Quote
+        </a>
+
+
+        <section id="comments">
+            @if (Model.Comments != null && Model.Comments.Count > 0)
+            {
+                <div id="comments-container">
+                    <h2>Comments About This Quote</h2>
+                    @foreach (var comment in @Model.Comments)
+                    {
+                        <figure>
+                            <figcaption>@comment.Author - @comment.CommentDate</figcaption>
+                            <p id="comment">@comment.Content</p>
+                        </figure>
+                    }
+                </div>
+            }
+        </section>
+
+    </section>
+
+</main>

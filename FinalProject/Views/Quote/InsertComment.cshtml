@@ -1,0 +1,53 @@
+﻿@model Comment
+
+@{
+    ViewData["Title"] = "Share Your Comment";
+}
+
+<link rel="stylesheet" href="~/css/quote.css">
+<link rel="stylesheet" href="~/css/InsertQuote.css">
+
+<div id="quote">
+    <h3>@Model.ParentQuote.Content</h3>
+</div>
+
+<div id="quotee">
+    <p>@Model.ParentQuote.Quotee</p>
+</div>
+
+<section id="comments">
+    <!-- Form Goes Here -->
+    <div id="comment-form">
+        <h2>Submit Your Comments</h2>
+        <!-- TODO: I'm sending null data to InsertCommentToDatabase here-->
+        @using (Html.BeginForm("InsertCommentToDatabase", "Quote", "Post"))
+        {
+            <input asp-for="QuoteID" type="hidden" value="@Model.ParentQuote.QuoteID" />
+
+            <label asp-for="Author">Your Name: </label>
+            <input id="name-input" type="text" class="form-control" placeholder="Enter your name here" required /> <br />
+
+            <label asp-for="Content">Your feelings about this quote:</label> <br />
+            <textarea id="comment-input" name="comment" class="form-control" required></textarea>
+            <div id="form-submit-container">
+            <input type="submit" id="form-submit" value="Submit Your Comments" />
+            </div>
+        }
+    </div>
+
+
+    @if (Model.ParentQuote.Comments != null)
+    {
+        <div id="comments-container">
+            <h2>Comments About This Quote</h2>
+            @foreach (var comment in @Model.ParentQuote.Comments)
+            {
+                <figure>
+                    <figcaption>@comment.Author - @comment.CommentDate</figcaption>
+                    <p id="comment">@comment.Content</p>
+                </figure>
+            }
+        </div>
+    }
+
+</section>

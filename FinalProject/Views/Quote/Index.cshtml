@@ -1,67 +1,59 @@
 ﻿@model IEnumerable<Quote>
 
-    <link rel="stylesheet" href="~/css/quote.css">
-    <script>
+<link rel="stylesheet" href="~/css/quote.css">
 
+<main>
 
-    </script>
+    <section id="today-quote">
 
-    <main>
+        <h2>Today's Quote</h2>
+        <div id="quote"> <h3>@Model.First().Content</h3> </div>
+        <div id="quotee"> <p>@Model.First().Quotee</p> </div>
+        <a id="link-centered-bordered" href=/Quote/InsertComment/@Model.First().QuoteID>
+            Submit Your Opinion About This Quote </a>
 
-        <section id="today-quote">
-            <h2>Today's Quote</h2>
-
-            <div id="quote">
-                <h3>@Model.ToArray()[0].Content</h3>
-            </div>
-
-            <div id="quotee">
-                <p>@Model.ToArray()[0].Quotee</p>
-            </div>
-
-
-            <section id="form-container">
-                <h2>How Does This Quote Make You Feel?</h2>
-                <form id="comment-form">
-                    <label for="name">Your Name:</label>
-                    <input type="text" id="name-input" name="name" placeholder="Enter Your Name Here" required /><br />
-                    <label for="comment">Your feelings about this quote:</label><br />
-                    <textarea id="comment-input" name="comment" required></textarea>
-                </form>
-            </section>
-
-
-            <section id="comments">
-                <h2>Comments About This Quote</h2>
-
+        <section id="comments">
+            @if (Model.ToArray()[0].Comments.Count > 0)
+            {
                 <div id="comments-container">
-
-                    @if (Model.ToArray()[0].Comments.Count > 0)
+                    <h2>Comments About This Quote</h2>
+                    @foreach (var comment in @Model.ToArray()[0].Comments)
                     {
-                        @foreach (var comment in @Model.ToArray()[0].Comments)
-                        {
-                            <figure>
-                                <figcaption>@comment.Author - @comment.CommentDate</figcaption>
-                                <p id="comment">@comment.Content</p>
-                            </figure>
-                        }
+                        <figure>
+                            <figcaption>@comment.Author - @comment.CommentDate</figcaption>
+                            <p id="comment">@comment.Content</p>
+                        </figure>
                     }
                 </div>
-            </section>
-
+            }
         </section>
 
-        <section id="prev-quotes">
-            <h2>This Weeks Quotes</h2>
+    </section>
+
+    <section id="prev-quotes">
+        <h2>This Weeks Quotes</h2>
+
+        <table class="table">
+
+            <tr>
+                <th>Date</th>
+                <th id="quote-header">Quote</th>
+                <th>Quotee</th>
+                <th>Submit Input</th>
+
+            </tr>
 
             @foreach (var quote in Model.ToArray().Skip(1))
             {
-                <div class="quote">
-                    <h4>@quote.Date : @quote.Content</h4>
-                    <p>@quote.Quotee</p>
-                </div>
+                <tr>
+                    <td id="day-of-week"><a href=/Quote/ViewQuote/@quote.QuoteID>@quote.Date.DayOfWeek</a></td>
+                    <td id="quote-of-week">@quote.Content</td>
+                    <td id="quotee-of-week">@quote.Quotee.Remove(0,1)</td>
+                    <td id="comment-quote-of-week"><a href=/Quote/ViewQuote/@quote.QuoteID>Submit Comment</a></td>
+                </tr>
             }
 
-        </section>
+        </table>
+    </section>
 
-    </main>
+</main>
