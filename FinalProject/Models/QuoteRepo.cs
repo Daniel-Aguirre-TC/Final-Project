@@ -39,10 +39,18 @@ namespace FinalProject.Models
             return _conn.QuerySingle<Quote>("SELECT * FROM quotes WHERE QuoteID = @QuoteID;", new { quoteID });
         }
 
-        public void InsertComment(Comment comment)
+        public void InsertComment(Comment commentToInsert)
         {
-            _conn.Execute("INSERT INTO comments (CommentDate, QuoteID, Author, Content) VALUES (CURRENT_TIMESTAMP, @quote, @author, @content);",
-                new { comment.QuoteID, comment.Author, comment.Content });
+            _conn.Execute("INSERT INTO comments (CommentDate, QuoteID, Author, Content) VALUES (CURRENT_TIMESTAMP, @QuoteID, @Author, @Content);",
+                new { QuoteID = commentToInsert.QuoteID, commentToInsert.Author, commentToInsert.Content });
+        }
+
+        public void InsertQuote(Quote quoteToInsert)
+        {
+
+            _conn.Execute("INSERT INTO quotes (Date, CategoryID, Content, Quotee) VALUES (@Date, @Category, @Content, @Quotee);",
+                new {quoteToInsert.Date, quoteToInsert.Category, quoteToInsert.Content, quoteToInsert.Quotee });
+
         }
     }
 }

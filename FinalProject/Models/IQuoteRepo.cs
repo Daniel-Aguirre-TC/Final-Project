@@ -9,7 +9,8 @@ namespace FinalProject.Models
     {
         public IEnumerable<Quote> GetAllQuotes();
         public IEnumerable<Comment> GetAllComments();
-        public void InsertComment(Comment comment);
+        public void InsertComment(Comment commentToInsert);
+        public void InsertQuote(Quote quoteToInsert);
         public Quote GetQuote(int quoteID);
 
     }

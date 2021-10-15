@@ -84,7 +84,6 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     color: black;
-    background-image: linear-gradient(315deg, #0499f2 10%, #26f596 74%);
     background-image: url("/Images/Pretty_Horizon.jpg");
     background-size: cover;
 }
