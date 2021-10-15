@@ -17,21 +17,27 @@
             Submit Your Opinion About This Quote
         </a>
 
-
-        <section id="comments">
-            @if (Model.Comments != null && Model.Comments.Count > 0)
-            {
+            <section id="comments">
                 <div id="comments-container">
                     <h2>Comments About This Quote</h2>
-                    @foreach (var comment in @Model.Comments)
+                    @if (Model.Comments.Count > 0)
                     {
-                        <figure>
-                            <figcaption>@comment.Author - @comment.CommentDate</figcaption>
-                            <p id="comment">@comment.Content</p>
-                        </figure>
+                        @foreach (var comment in @Model.Comments)
+                        {
+                            <figure id="comment">
+                                <figcaption>@comment.Author - @comment.CommentDate</figcaption>
+                                <p id="comment-content">@comment.Content</p>
+                            </figure>
+                        }
+                    }
+                    else
+                    {
+                        <p id="no-comments">No one has commented yet....<br /> Submit your opinion to be the first to comment!</p>
                     }
                 </div>
-            }
+            </section>
+
+
         </section>
 
     </section>

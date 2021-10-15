@@ -13,20 +13,24 @@
             Submit Your Opinion About This Quote </a>
 
         <section id="comments">
-            @if (Model.ToArray()[0].Comments.Count > 0)
+        <div id="comments-container">
+        <h2>Comments About Today's Quote</h2>
+            @if (Model.First().Comments.Count > 0)
             {
-                <div id="comments-container">
-                    <h2>Comments About This Quote</h2>
-                    @foreach (var comment in @Model.ToArray()[0].Comments)
-                    {
-                        <figure>
-                            <figcaption>@comment.Author - @comment.CommentDate</figcaption>
-                            <p id="comment">@comment.Content</p>
-                        </figure>
-                    }
-                </div>
+                @foreach (var comment in @Model.First().Comments)
+                {
+                    <figure id="comment">
+                        <figcaption>@comment.Author - @comment.CommentDate</figcaption>
+                        <p id="comment-content">@comment.Content</p>
+                    </figure>
+                }
             }
-        </section>
+            else 
+            {
+                <p id="no-comments">No one has commented yet....<br/> Submit your opinion to be the first to comment!</p>
+            } 
+            </div>
+    </section>
 
     </section>
 
@@ -46,10 +50,10 @@
             @foreach (var quote in Model.ToArray().Skip(1))
             {
                 <tr>
-                    <td id="day-of-week"><a href=/Quote/ViewQuote/@quote.QuoteID>@quote.Date.DayOfWeek</a></td>
+                    <td id="day-of-week"><a href=/Quote/ViewQuote/@quote.QuoteID>@quote.Date.ToString("MM/dd/yyyy")</a></td>
                     <td id="quote-of-week">@quote.Content</td>
                     <td id="quotee-of-week">@quote.Quotee.Remove(0,1)</td>
-                    <td id="comment-quote-of-week"><a href=/Quote/ViewQuote/@quote.QuoteID>Submit Comment</a></td>
+                    <td id="comment-quote-of-week"><a href=/Quote/InsertComment/@quote.QuoteID>Submit Comment</a></td>
                 </tr>
             }
 

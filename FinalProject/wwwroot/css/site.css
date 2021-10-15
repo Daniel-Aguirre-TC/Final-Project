@@ -19,8 +19,20 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-.navbar{
+.navbar {
     background: rgb(184 213 229);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
 }
 
 a.navbar-brand {
@@ -82,6 +94,7 @@ html {
 
 body {
     /* Margin bottom by footer height */
+    padding-top: 40px;
     margin-bottom: 60px;
     color: black;
     background-image: url("/Images/Pretty_Horizon.jpg");

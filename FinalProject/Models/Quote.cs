@@ -12,9 +12,8 @@ namespace FinalProject.Models
         public string Content { get; set; }
         public string Quotee { get; set; }
         public string Category { get; set; }
-        public List<Comment> Comments { get; set; }
-    
-        
-
+        public List<Comment> Comments { get; set; }         
     }
+
+
 }

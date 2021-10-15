@@ -9,7 +9,7 @@ body {
 #today-quote {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: 2% auto;
-
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -29,6 +29,7 @@ body {
     font-weight: 900;
     text-align: center;
     padding: 6vh 3vw 4vh 3vw;
+    padding: 5vw 5vh 3vw 5vh;
 }
 
 
@@ -39,8 +40,9 @@ body {
 }
 
 #comments {
-    margin-top: 2%;
+    margin-top: 5%;
     width: 100%;
+    margin-bottom: 5%
 }
 
 #comments-container, #form-container, #prev-quotes{
@@ -59,13 +61,25 @@ body {
     border-radius: 25%;
 }
 
-#comment-container h2 {
-    padding-bottom: 10px;
-}
-figure {
+    #comment-container h2 {
+        padding-bottom: 10px;
+    }
+
+#comment {
     padding: 10px;
     border-bottom: 2px solid #0499f2;
     overflow: unset;
+}
+
+#comment-content {
+    padding-top: 5px;
+    font-weight: 200;
+    font-size: 1rem;
+}
+
+#no-comments {
+    padding-top: 10px;
+    text-align: center;
 }
 
 #prev-quotes h2 {
