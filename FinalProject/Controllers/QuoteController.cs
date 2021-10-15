@@ -23,7 +23,7 @@ namespace FinalProject.Controllers
         /// If Todays quote does not exist, generate a new one from API. Then Redirect to view this weeks quotes.
         /// </summary>
         public IActionResult Index()
-        {
+        {            
             CheckTodaysQuoteExists();
             return View(repo.GetThisWeeksQuotes());
         }
@@ -42,8 +42,12 @@ namespace FinalProject.Controllers
         /// </summary>
         public IActionResult ViewQuote(int id)
         {
+            // obtain the quote with matching quoteID from Database
             var quote = repo.GetQuote(id);
+
+            // assign comments to that quote
             quote.Comments = repo.GetCommentsById(id).ToList();
+
             return View(quote);
         }
 
@@ -52,10 +56,13 @@ namespace FinalProject.Controllers
         /// </summary>
         public IActionResult InsertComment(int id)
         {
+            // create a new instance of Comment and assign the QuoteID and ParentQuote based on the quoteID provided
             var comment = new Comment() {
                 QuoteID = id,
                 ParentQuote = repo.GetQuote(id)        
-            };            
+            };
+            
+            // if the QuoteID provided is found in the Database then go to View InsertComment page
             return repo.GetQuote(id) == null ? View("QuoteNotFound") : View("InsertComment", comment);
         }
 
@@ -64,7 +71,10 @@ namespace FinalProject.Controllers
         /// </summary>
         public IActionResult InsertCommentToDatabase(Comment commentToInsert)
         {
+            // Insert the provided comment into the database.
             repo.InsertComment(commentToInsert);
+
+            // redirect to view the page for the quote we just commented on.
             return RedirectToAction("ViewQuote", new { id = commentToInsert.QuoteID });
         }
 
@@ -73,7 +83,10 @@ namespace FinalProject.Controllers
         /// </summary>
         public IActionResult DeleteTodaysQuote()
         {
-            if (repo.TodaysQuoteExists()) repo.DeleteQuote(repo.GetMostRecentQuote());           
+            // Delete todays quote if it exists in the Database
+            if (repo.TodaysQuoteExists()) repo.DeleteQuote(repo.GetMostRecentQuote()); 
+            
+            // Return to home page after deleting a quote
             return RedirectToAction("Index", "Home");
         }
 
@@ -82,6 +95,7 @@ namespace FinalProject.Controllers
         /// </summary>
         void CheckTodaysQuoteExists()
         {
+            // if todays quote does not exist
             if (!repo.TodaysQuoteExists())
             {
                 // Insert New Quote Pulled from API
